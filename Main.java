@@ -1,37 +1,32 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        int numeroDias = 7; // Substitua pelo número desejado de dias
+        Scanner scanner = new Scanner(System.in);
 
-        // Vendas diárias (exemplo)
-        double[] vendasDiarias = { 50.0, 60.0, 45.0, 70.0, 55.0, 80.0, 65.0 };
-
-        // Inicialização de variáveis
-        double totalVendas = 0;
-        double estoqueMinimo = vendasDiarias[0]; // Assume o primeiro valor como mínimo
-        double estoqueMaximo = vendasDiarias[0]; // Assume o primeiro valor como máximo
-
-        // Loop para cálculos
-        for (double vendaDiaria : vendasDiarias) {
-            // Atualizar total de vendas
-            totalVendas += vendaDiaria;
-
-            // Atualizar estoque mínimo
-            if (vendaDiaria < estoqueMinimo) {
-                estoqueMinimo = vendaDiaria;
-            }
-
-            // Atualizar estoque máximo
-            if (vendaDiaria > estoqueMaximo) {
-                estoqueMaximo = vendaDiaria;
-            }
+        float[] numeros = new float[5];
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Digite o " + (i + 1) + "º número:");
+            numeros[i] = scanner.nextInt();
         }
+        float somaImpares = 0;
+        for (float numero : numeros) {
+            somaImpares += (numero % 2 != 0) ? numero : 0;
+        }
+        float somaPares = 0;
+        for (float numero : numeros) {
+            somaPares += (numero % 2 == 0) ? numero : 0;
+        }
+        float diferenca = somaImpares - somaPares;
+        float divisorProximo = ((diferenca + 10 / 2) / 10 * 10);
+        float resultadoFinal = diferenca - divisorProximo;
 
-        // Calcular venda média diária
-        double vendaMediaDiaria = totalVendas / numeroDias;
+        System.out.println("A soma dos números ímpares é: " + somaImpares);
+        System.out.println("A soma dos números pares é: " + somaPares);
+        System.out.println("A diferença entre as somas é: " + diferenca);
+        System.out.println("O divisor de 10 mais próximo é: " + divisorProximo);
+        System.out.println("O resultado final é: " + resultadoFinal);
 
-        // Exibir resultados
-        System.out.println("Venda Média Diária: " + vendaMediaDiaria);
-        System.out.println("Estoque Mínimo: " + estoqueMinimo);
-        System.out.println("Estoque Máximo: " + estoqueMaximo);
+        scanner.close();
     }
 }
